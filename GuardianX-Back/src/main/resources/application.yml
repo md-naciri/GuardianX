@@ -1,0 +1,41 @@
+server:
+  port: 8081
+  error:
+    include-message: always
+    include-binding-errors: always
+spring:
+  application:
+    name: taskFlow
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        use_sql_comments: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/gardianx # MySQL URL
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver # MySQL driver class
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yml
+jwt:
+  access:
+    expirationInMs: 1440000 # 24 minutes
+  refresh:
+    expirationInMonths: 1
+  signing:
+    key: p5eHhtsr9qvSTaybbxGgYkhvnT7PYcqCxi6tNUEyXvQ=
+seeder:
+  enabled: true
+  super-admin:
+    password: 1234
+logging:
+  level:
+    org:
+      springframework:
+        web: trace
+    liquibase: trace
